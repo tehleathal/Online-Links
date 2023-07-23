@@ -2,45 +2,38 @@
 <html>
   <head>
     <title>CSV Display</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.1.0/papaparse.min.js"></script>
   </head>
   <body>
-    <table id="table"></table>
-    
-    <script>
-      fetch('https://tehleathal.github.io/Online-Links/Link-Latest.csv')
-        .then(response => response.text())
-        .then(data => {
-          let results = Papa.parse(data, {header:true}).data;
-          let table = document.querySelector("#table");
-          let headers = Object.keys(results[0]);
-          
-          // Create table headers
-          let thead = document.createElement('thead');
-          let headerRow = document.createElement('tr');
-          headers.forEach(header => {
-            let th = document.createElement('th');
-            th.textContent = header;
-            headerRow.appendChild(th);
-          });
-          thead.appendChild(headerRow);
-          table.appendChild(thead);
-
-          let tbody = document.createElement('tbody');
-
-          // Create table rows
-          results.forEach(result => {
-            let tr = document.createElement('tr');
-            headers.forEach(header => {
-              let td = document.createElement('td');
-              td.textContent = result[header];
-              tr.appendChild(td);
-            });
-            tbody.appendChild(tr);
-          });
-          
-          table.appendChild(tbody);
-        })
-    </script>
+    <table>
+      <thead>
+        <tr>
+          <th>Category</th>
+          <th>Description</th>
+          <th>Url</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>ASCII Art</td>
+          <td>Text to ASCII Art Large</td>
+          <td><a href="https://patorjk.com/software/taag/">https://patorjk.com/software/taag/</a></td>
+        </tr>
+        <tr>
+          <td>ASCII Art</td>
+          <td>Image to ASCII Art</td>
+          <td><a href="https://www.ascii-art-generator.org/">https://www.ascii-art-generator.org/</a></td>
+        </tr>
+        <tr>
+          <td>ASCII Art</td>
+          <td>Text to ASCII Art Small</td>
+          <td><a href="https://fsymbols.com/generators/zalgo/">https://fsymbols.com/generators/zalgo/</a></td>
+        </tr>
+        <tr>
+          <td>ASCII Art</td>
+          <td>Draw to ASCII Art</td>
+          <td><a href="https://fsymbols.com/draw/">https://fsymbols.com/draw/</a></td>
+        </tr>
+      </tbody>
+    </table>
   </body>
 </html>
