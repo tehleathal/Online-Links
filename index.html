@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>CSV Display</title>
+    <script src="https://cdn.jsdelivr.net/npm/papaparse@5.6.0/papaparse.min.js"></script>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+        th, td {
+            text-align: left;
+            padding: 8px;
+        }
+        tr:nth-child(even) {background-color: #f2f2f2;}
+    </style>
+</head>
+<body>
+
+<h2>Your CSV Data:</h2>
+
+<div id="csvData"></div>
+
+<script>
+window.onload=function(){
+    Papa.parse('Links-Latest.csv', {
+        download: true,
+        header: true,
+        complete: function(results) {
+            var data = results.data;
+            var table = "<table>";
+            for (var i = 0; i < data.length; i++) {
+                table += "<tr>";
+                for (var key in data[i]) {
+                    if (data[i].hasOwnProperty(key)) {
+                        if (i === 0) {
+                            table += "<th>" + key + "</th>";
+                        } else {
+                            table += "<td>" + data[i][key] + "</td>";
+                        }
+                    }
+                }
+                table += "</tr>";
+            }
+            table += "</table>";
+            document.getElementById("csvData").innerHTML = table;
+        }
+    });
+}
+</script>
+
+</body>
+</html>
