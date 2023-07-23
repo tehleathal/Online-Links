@@ -1,53 +1,46 @@
 <!DOCTYPE html>
 <html>
-<head>
+  <head>
     <title>CSV Display</title>
-    <script src="https://cdn.jsdelivr.net/npm/papaparse@5.6.0/papaparse.min.js"></script>
-    <style>
-        table {
-            border-collapse: collapse;
-            width: 100%;
-        }
-        th, td {
-            text-align: left;
-            padding: 8px;
-        }
-        tr:nth-child(even) {background-color: #f2f2f2;}
-    </style>
-</head>
-<body>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.1.0/papaparse.min.js"></script>
+  </head>
+  <body>
+    <table id="table"></table>
+    
+    <script>
+      fetch('https://tehleathal.github.io/Online-Links/Link-Latest.csv')
+        .then(response => response.text())
+        .then(data => {
+          let results = Papa.parse(data, {header:true}).data;
+          let table = document.querySelector("#table");
+          let headers = Object.keys(results[0]);
+          
+          // Create table headers
+          let thead = document.createElement('thead');
+          let headerRow = document.createElement('tr');
+          headers.forEach(header => {
+            let th = document.createElement('th');
+            th.textContent = header;
+            headerRow.appendChild(th);
+          });
+          thead.appendChild(headerRow);
+          table.appendChild(thead);
 
-<h2>Your CSV Data:</h2>
+          let tbody = document.createElement('tbody');
 
-<div id="csvData"></div>
-
-<script>
-window.onload=function(){
-    Papa.parse('Links-Latest.csv', {
-        download: true,
-        header: true,
-        complete: function(results) {
-            var data = results.data;
-            var table = "<table>";
-            for (var i = 0; i < data.length; i++) {
-                table += "<tr>";
-                for (var key in data[i]) {
-                    if (data[i].hasOwnProperty(key)) {
-                        if (i === 0) {
-                            table += "<th>" + key + "</th>";
-                        } else {
-                            table += "<td>" + data[i][key] + "</td>";
-                        }
-                    }
-                }
-                table += "</tr>";
-            }
-            table += "</table>";
-            document.getElementById("csvData").innerHTML = table;
-        }
-    });
-}
-</script>
-
-</body>
+          // Create table rows
+          results.forEach(result => {
+            let tr = document.createElement('tr');
+            headers.forEach(header => {
+              let td = document.createElement('td');
+              td.textContent = result[header];
+              tr.appendChild(td);
+            });
+            tbody.appendChild(tr);
+          });
+          
+          table.appendChild(tbody);
+        })
+    </script>
+  </body>
 </html>
