@@ -1,5 +1,8 @@
 Category,Description,Url
-"ASCII Art","Text to ASCII Art Large","https://patorjk.com/software/taag/"
-"ASCII Art","Image to ASCII Art","https://www.ascii-art-generator.org/"
-"ASCII Art","Text to ASCII Art Small","https://fsymbols.com/generators/zalgo/"
-"ASCII Art","Draw to ASCII Art","https://fsymbols.com/draw/"
+ASCII Art,Text to ASCII Art Large,https://patorjk.com/software/taag/
+ASCII Art,Image to ASCII Art,https://www.ascii-art-generator.org/
+ASCII Art,Text to ASCII Art Small,https://fsymbols.com/generators/zalgo/
+ASCII Art,Draw to ASCII Art,https://fsymbols.com/draw/
+TheVCISO.org,Cloudflare Access (Zero Trust),https://thevcisoorg.cloudflareaccess.com/
+TheVCISO.org,Google Workspace Admin (IAM),https://admin.google.com/
+TheVCISO.org,Google Cloud Platform (GCP),https://console.cloud.google.com/
